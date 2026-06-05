@@ -4,6 +4,7 @@ import { Badge } from "./ui/Badge";
 
 type EventCardProps = {
   event: Event;
+  isAuthenticated?: boolean;
 };
 
 function formatDateRange(starts: string | null, ends: string | null): string {
@@ -25,18 +26,35 @@ function formatDateRange(starts: string | null, ends: string | null): string {
   });
 }
 
-export function EventCard({ event }: EventCardProps) {
+export function EventCard({ event, isAuthenticated = true }: EventCardProps) {
+  const href = isAuthenticated
+    ? `/events/${event.slug}`
+    : `/signup?redirect=${encodeURIComponent(`/events/${event.slug}`)}`;
+
   return (
-    <Link href={`/events/${event.slug}`} className="group block">
-      <article className="treasure-card p-5 transition-all duration-300 hover:border-treasure-gold/30 hover:shadow-treasure">
+    <Link href={href} className="group block">
+      <article
+        className={`treasure-card relative p-5 transition-all duration-300 ${
+          isAuthenticated
+            ? "hover:border-treasure-gold/30 hover:shadow-treasure"
+            : "opacity-90"
+        }`}
+      >
+        {!isAuthenticated && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-map-dark/60 backdrop-blur-[2px]">
+            <div className="flex items-center gap-2 rounded-full border border-treasure-gold/30 bg-map-surface/90 px-4 py-2 text-sm font-medium text-treasure-gold-light">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              Sign up to explore
+            </div>
+          </div>
+        )}
+
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
-            {event.theme && (
-              <Badge variant="green" >
-                {event.theme}
-              </Badge>
-            )}
-            <h3 className="mt-2 font-display text-xl font-semibold text-text-primary group-hover:text-treasure-gold-light transition-colors">
+            {event.theme && <Badge variant="green">{event.theme}</Badge>}
+            <h3 className="mt-2 font-display text-xl font-semibold text-text-primary transition-colors group-hover:text-treasure-gold-light">
               {event.name}
             </h3>
             {event.city && (
@@ -59,7 +77,7 @@ export function EventCard({ event }: EventCardProps) {
           </div>
         </div>
         <div className="mt-4 flex items-center gap-1 text-sm font-medium text-cannabis-green">
-          Explore stops
+          {isAuthenticated ? "Explore stops" : "Create account to unlock"}
           <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>

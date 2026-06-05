@@ -25,7 +25,7 @@ export function StopActions({
   const [reviewState, setReviewState] = useState<ActionState>("idle");
 
   useEffect(() => {
-    setVisitorCode(getVisitorCode());
+    getVisitorCode().then(setVisitorCode);
   }, []);
 
   const postAction = useCallback(

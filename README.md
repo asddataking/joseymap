@@ -59,10 +59,21 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Route | Description |
 |-------|-------------|
-| `/` | Landing page with active event cards |
-| `/events/[slug]` | Event map with dispensary stops |
+| `/` | Landing page with active event cards (CTAs require sign-up) |
+| `/signup` | Create account (required to access events) |
+| `/login` | Log in to existing account |
+| `/profile` | View and edit basic profile |
+| `/events/[slug]` | Event map with dispensary stops (auth required) |
 | `/events/[slug]/stops/[id]` | Stop detail with actions |
 | `/admin` | Password-protected analytics dashboard |
+
+## Authentication
+
+JoseyMap uses **Supabase Auth** with a `profiles` table (display name, avatar). New users get a profile automatically on sign-up.
+
+- Homepage CTAs and event cards are gated — visitors must register before exploring hunts
+- `/events/*` routes redirect unauthenticated users to `/signup`
+- Check-ins and redemptions are tied to the authenticated user ID when logged in
 
 ## Deploy to Vercel
 

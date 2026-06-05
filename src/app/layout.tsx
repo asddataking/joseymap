@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, DM_Sans } from "next/font/google";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${cinzel.variable} ${dmSans.variable} font-sans antialiased bg-map-dark text-text-primary`}
       >
+        <SiteHeader />
         {children}
       </body>
     </html>
