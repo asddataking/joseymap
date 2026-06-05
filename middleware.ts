@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { ADMIN_COOKIE, isValidAdminToken } from "@/lib/admin-auth";
 import { updateSession } from "@/lib/supabase/middleware";
 
-const PROTECTED_PREFIXES = ["/events", "/profile"];
+const PROTECTED_PREFIXES = ["/profile"];
 const AUTH_PAGES = ["/login", "/signup"];
 
 function isSupabaseConfigured(): boolean {
@@ -17,7 +17,8 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (
-    pathname.startsWith("/api/admin/analytics") &&
+    pathname.startsWith("/api/admin/") &&
+    !pathname.startsWith("/api/admin/auth") &&
     !isValidAdminToken(request.cookies.get(ADMIN_COOKIE)?.value)
   ) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -51,8 +52,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/api/admin/analytics",
-    "/events/:path*",
+    "/api/admin/:path*",
     "/profile",
     "/login",
     "/signup",

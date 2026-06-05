@@ -23,6 +23,8 @@ function mapDispensary(row: {
   address: string | null;
   city: string | null;
   state: string | null;
+  lat?: number | null;
+  lng?: number | null;
   google_review_url: string | null;
 }): Dispensary {
   return {
@@ -31,6 +33,8 @@ function mapDispensary(row: {
     address: row.address,
     city: row.city,
     state: row.state,
+    lat: row.lat ?? null,
+    lng: row.lng ?? null,
     google_review_url: row.google_review_url,
   };
 }
@@ -41,6 +45,11 @@ function mapEvent(row: {
   name: string;
   city: string | null;
   theme: string | null;
+  description?: string | null;
+  meta_description?: string | null;
+  map_center_lat?: number | null;
+  map_center_lng?: number | null;
+  map_zoom?: number | null;
   starts_at: string | null;
   ends_at: string | null;
   is_active: boolean | null;
@@ -51,6 +60,11 @@ function mapEvent(row: {
     name: row.name,
     city: row.city,
     theme: row.theme,
+    description: row.description ?? null,
+    meta_description: row.meta_description ?? null,
+    map_center_lat: row.map_center_lat ?? null,
+    map_center_lng: row.map_center_lng ?? null,
+    map_zoom: row.map_zoom ?? null,
     starts_at: row.starts_at,
     ends_at: row.ends_at,
     is_active: row.is_active ?? true,
@@ -113,16 +127,7 @@ export async function getEventStops(slug: string): Promise<EventStop[]> {
     offer_title: row.offer_title,
     offer_description: row.offer_description,
     stop_order: row.stop_order ?? 0,
-    dispensary: mapDispensary(
-      row.dispensaries as {
-        id: string;
-        name: string;
-        address: string | null;
-        city: string | null;
-        state: string | null;
-        google_review_url: string | null;
-      }
-    ),
+    dispensary: mapDispensary(row.dispensaries as Parameters<typeof mapDispensary>[0]),
   }));
 }
 
@@ -154,18 +159,14 @@ export async function getStopById(
     offer_title: data.offer_title,
     offer_description: data.offer_description,
     stop_order: data.stop_order ?? 0,
-    dispensary: mapDispensary(
-      data.dispensaries as {
-        id: string;
-        name: string;
-        address: string | null;
-        city: string | null;
-        state: string | null;
-        google_review_url: string | null;
-      }
-    ),
+    dispensary: mapDispensary(data.dispensaries as Parameters<typeof mapDispensary>[0]),
     event,
   };
+}
+
+export async function getAllEventSlugs(): Promise<string[]> {
+  const events = await getActiveEvents();
+  return events.map((e) => e.slug);
 }
 
 export async function recordCheckin(

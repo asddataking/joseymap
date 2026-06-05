@@ -77,6 +77,16 @@ body {
   }
 }
 
+.leaflet-container {
+  background: #111811 !important;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+.joseymap-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
 @layer components {
   .treasure-card {
     @apply relative overflow-hidden rounded-2xl border border-white/10 bg-map-surface shadow-card;

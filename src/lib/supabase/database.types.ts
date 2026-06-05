@@ -48,6 +48,8 @@ export type Database = {
           created_at: string | null
           google_review_url: string | null
           id: string
+          lat: number | null
+          lng: number | null
           name: string
           state: string | null
         }
@@ -57,6 +59,8 @@ export type Database = {
           created_at?: string | null
           google_review_url?: string | null
           id?: string
+          lat?: number | null
+          lng?: number | null
           name: string
           state?: string | null
         }
@@ -66,6 +70,8 @@ export type Database = {
           created_at?: string | null
           google_review_url?: string | null
           id?: string
+          lat?: number | null
+          lng?: number | null
           name?: string
           state?: string | null
         }
@@ -120,9 +126,14 @@ export type Database = {
         Row: {
           city: string | null
           created_at: string | null
+          description: string | null
           ends_at: string | null
           id: string
           is_active: boolean | null
+          map_center_lat: number | null
+          map_center_lng: number | null
+          map_zoom: number | null
+          meta_description: string | null
           name: string
           slug: string
           starts_at: string | null
@@ -131,9 +142,14 @@ export type Database = {
         Insert: {
           city?: string | null
           created_at?: string | null
+          description?: string | null
           ends_at?: string | null
           id?: string
           is_active?: boolean | null
+          map_center_lat?: number | null
+          map_center_lng?: number | null
+          map_zoom?: number | null
+          meta_description?: string | null
           name: string
           slug: string
           starts_at?: string | null
@@ -142,9 +158,14 @@ export type Database = {
         Update: {
           city?: string | null
           created_at?: string | null
+          description?: string | null
           ends_at?: string | null
           id?: string
           is_active?: boolean | null
+          map_center_lat?: number | null
+          map_center_lng?: number | null
+          map_zoom?: number | null
+          meta_description?: string | null
           name?: string
           slug?: string
           starts_at?: string | null

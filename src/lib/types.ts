@@ -12,6 +12,11 @@ export type Event = {
   name: string;
   city: string | null;
   theme: string | null;
+  description: string | null;
+  meta_description: string | null;
+  map_center_lat: number | null;
+  map_center_lng: number | null;
+  map_zoom: number | null;
   starts_at: string | null;
   ends_at: string | null;
   is_active: boolean;
@@ -23,6 +28,8 @@ export type Dispensary = {
   address: string | null;
   city: string | null;
   state: string | null;
+  lat: number | null;
+  lng: number | null;
   google_review_url: string | null;
 };
 
@@ -38,6 +45,16 @@ export type EventStop = {
 
 export type EventWithStops = Event & {
   stops: EventStop[];
+};
+
+export type MapMarker = {
+  stopId: string;
+  stopOrder: number;
+  name: string;
+  address: string;
+  lat: number;
+  lng: number;
+  offerTitle: string | null;
 };
 
 export type DispensaryAnalytics = {

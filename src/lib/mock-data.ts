@@ -7,6 +7,8 @@ const MOCK_DISPENSARIES = {
     address: "2460 E Stadium Blvd",
     city: "Ann Arbor",
     state: "MI",
+    lat: 42.2699,
+    lng: -83.6987,
     google_review_url: "https://g.page/green-genie-ann-arbor/review",
   },
   exclusive: {
@@ -15,6 +17,8 @@ const MOCK_DISPENSARIES = {
     address: "3820 Varsity Dr",
     city: "Ann Arbor",
     state: "MI",
+    lat: 42.2831,
+    lng: -83.7436,
     google_review_url: "https://g.page/exclusive-cannabis/review",
   },
   skymint: {
@@ -23,6 +27,8 @@ const MOCK_DISPENSARIES = {
     address: "1958 S Industrial Hwy",
     city: "Ann Arbor",
     state: "MI",
+    lat: 42.2472,
+    lng: -83.7356,
     google_review_url: "https://g.page/skymint-ann-arbor/review",
   },
   houseOfDank: {
@@ -31,6 +37,8 @@ const MOCK_DISPENSARIES = {
     address: "4568 E 8 Mile Rd",
     city: "Detroit",
     state: "MI",
+    lat: 42.4482,
+    lng: -83.0998,
     google_review_url: "https://g.page/house-of-dank/review",
   },
   lume: {
@@ -39,6 +47,8 @@ const MOCK_DISPENSARIES = {
     address: "200 E Jefferson Ave",
     city: "Detroit",
     state: "MI",
+    lat: 42.3314,
+    lng: -83.042,
     google_review_url: "https://g.page/lume-cannabis/review",
   },
 };
@@ -50,6 +60,13 @@ export const MOCK_EVENTS: Event[] = [
     name: "Hash Bash 2026",
     city: "Ann Arbor",
     theme: "Hash Bash",
+    description:
+      "Join the ultimate Ann Arbor cannabis treasure hunt during Hash Bash weekend. Visit participating dispensaries, check in with JoseyMap, and unlock exclusive deals.",
+    meta_description:
+      "Hash Bash 2026 treasure map — explore Ann Arbor dispensary stops, check in, and redeem exclusive cannabis offers with JoseyMap.",
+    map_center_lat: 42.2808,
+    map_center_lng: -83.743,
+    map_zoom: 13,
     starts_at: "2026-04-04T10:00:00",
     ends_at: "2026-04-04T22:00:00",
     is_active: true,
@@ -60,6 +77,13 @@ export const MOCK_EVENTS: Event[] = [
     name: "Halloween Hunt 2026",
     city: "Detroit",
     theme: "Halloween",
+    description:
+      "A spooky cannabis treasure hunt across Detroit dispensaries. Collect stops on your Halloween Hunt map and claim limited-time bundle deals.",
+    meta_description:
+      "Halloween Hunt 2026 — Detroit dispensary treasure map with exclusive offers. Check in and redeem deals with JoseyMap.",
+    map_center_lat: 42.3314,
+    map_center_lng: -83.0458,
+    map_zoom: 12,
     starts_at: "2026-10-31T12:00:00",
     ends_at: "2026-10-31T23:00:00",
     is_active: true,
