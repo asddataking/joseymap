@@ -7,8 +7,8 @@ export async function SiteHeader() {
   const authEnabled = isSupabaseConfigured();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-white/10 bg-map-dark/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-lg items-center justify-between px-4 py-3">
+    <header className="sticky top-0 z-30 border-b border-white/5 bg-map-dark/70 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <Link
           href="/"
           className="font-display text-lg font-bold text-gold-gradient"
